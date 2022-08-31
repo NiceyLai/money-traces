@@ -2,13 +2,14 @@
 <template>
     <div>
 statistics.vue
+<Nav></Nav>
     </div>
 </template>
 
 <script lang="ts">
-    export default {
+export default {
         
-    }
+}
 </script>
 
 <style lang="scss" scoped>

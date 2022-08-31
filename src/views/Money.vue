@@ -1,14 +1,15 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div>
-money.vue
+        money.vue
+        <Nav></Nav>
     </div>
 </template>
 
 <script lang="ts">
-    export default {
+export default {
         
-    }
+}
 </script>
 
 <style lang="scss" scoped>
