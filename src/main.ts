@@ -1,14 +1,19 @@
+/* eslint-disable vue/multi-word-component-names */
 import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import Nav from '@/components/Nav.vue'
+import Layout from '@/components/Layout.vue'
+import Icon from '@/components/Icon.vue'
+
 
 Vue.config.productionTip = false
 
-// eslint-disable-next-line vue/multi-word-component-names
 Vue.component('Nav', Nav)
+Vue.component('Layout', Layout)
+Vue.component('Icon', Icon)
 
 new Vue({
   router,
