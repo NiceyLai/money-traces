@@ -1,7 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div>
-NotFound.vue
+    <div>当前页面不存在，请检查网址是否正确</div>
+    <div>
+        <router-link to="/">放回首页</router-link>
+    </div>
     </div>
 </template>
 
