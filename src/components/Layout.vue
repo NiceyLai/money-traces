@@ -1,7 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
       <div class="nav-wrapper">
-        
         <div class="content">
             <slot></slot>
             </div>
