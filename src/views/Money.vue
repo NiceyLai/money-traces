@@ -22,12 +22,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '@/assets/style/helper.scss';
+    @import '@/assets/style/reset.scss';
 .new-wrapper{
     overflow: auto;
     border: 1px solid red;
     .icon {
        width: 4em; height: 4em;
-        color: #338bd8;
+        color:  $color-highlight;
        fill: currentColor;
        overflow: hidden;
     }
