@@ -7,7 +7,7 @@
         <li>收入</li>
       </ul>
     </nav>
-    <div class="tags">
+    <div class="expendituresTags">
       <ul class="current">
         <li>三餐</li>
         <li>零食</li>
@@ -29,17 +29,15 @@
       </ul>
       <div class="new"><button>新增标签</button></div>
     </div>
-    <div class="comeing">
-      <div class="tags">
-        <ul class="current">
-          <li>工资</li>
-          <li>外快</li>
-          <li>股票</li>
-          <li>基金</li>
-          <li>其他</li>
-        </ul>
-        <div class="new"><button>新增标签</button></div>
-      </div>
+    <div class="revenueTags">
+      <ul class="current">
+        <li>工资</li>
+        <li>外快</li>
+        <li>股票</li>
+        <li>基金</li>
+        <li>其他</li>
+      </ul>
+      <div class="new"><button>新增标签</button></div>
     </div>
     <label class="notes">
       <span class="name">备注</span>
@@ -75,7 +73,6 @@ export default {};
 
 <style lang="scss" scoped>
 @import "@/assets/style/helper.scss";
-@import "@/assets/style/reset.scss";
 .new-wrapper {
   overflow: auto;
   .icon {
@@ -87,7 +84,7 @@ export default {};
   }
 }
 nav {
-  .types {
+  > .types {
     background: rgb(254, 223, 228);
     display: flex;
     text-align: center;
@@ -110,5 +107,31 @@ nav {
       }
     }
   }
+}
+
+.expendituresTags {
+  > .current {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    > li {
+      display: flex;
+      align-items: center;
+      background: pink;
+      height: 30px;
+      border-radius: 12px;
+      padding: 0 20px;
+      margin: 10px 10px;
+      white-space: nowrap;
+    }
+  }
+  .new {
+    .button {
+    }
+  }
+}
+
+.revenueTags {
+  display: none;
 }
 </style>
