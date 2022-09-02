@@ -18,7 +18,7 @@
       <li>汽车</li>
       <li>娱乐</li>
       <li>人情</li>
-      <li>电器</li>
+
       <li><button>新增</button></li>
     </ul>
   </div>
@@ -32,10 +32,18 @@ export default {};
 @import "@/assets/style/helper.scss";
 
 .expendituresTags {
+  font-size: 14px;
+  width: 100%;
+  height: 36vh;
+  overflow: auto;
+  position: fixed;
+  top: 64px;
+  left: 0;
   > .current {
+    margin-left: 16px;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+
     > li {
       display: flex;
       align-items: center;
@@ -44,7 +52,6 @@ export default {};
       border-radius: 12px;
       padding: 0 20px;
       margin: 10px 10px;
-      white-space: nowrap;
       > button {
         border: none;
         background: transparent;

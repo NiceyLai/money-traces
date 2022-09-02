@@ -20,10 +20,15 @@ export default {};
 @import "@/assets/style/helper.scss";
 @import "@/assets/style/reset.scss";
 nav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 101;
+  width: 100%;
   display: flex;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
-  flex-direction: row;
   font-size: 12px;
+  background-color: $color-bodybackground;
   > .item {
     padding: 2px 0;
     width: 50%;
