@@ -38,7 +38,7 @@ export default {};
 .number {
   position: fixed;
   left: 0;
-  bottom: 52px;
+  bottom: 56px;
   width: 100%;
 
   > .numberPad {
@@ -57,6 +57,7 @@ export default {};
         background-color: $color-bodybackground;
         width: 25%;
         height: 56px;
+        border-radius: 10px;
         border: 2px solid $color-background;
       }
     }
