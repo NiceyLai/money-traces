@@ -7,38 +7,8 @@
         <li>收入</li>
       </ul>
     </nav>
-    <div class="expendituresTags">
-      <ul class="current">
-        <li>三餐</li>
-        <li>零食</li>
-        <li>交通</li>
-        <li>衣服</li>
-        <li>旅行</li>
-        <li>宠物</li>
-        <li>话费</li>
-        <li>网费</li>
-        <li>烟酒</li>
-        <li>学习</li>
-        <li>医疗</li>
-        <li>住房</li>
-        <li>美妆</li>
-        <li>汽车</li>
-        <li>娱乐</li>
-        <li>人情</li>
-        <li>电器</li>
-      </ul>
-      <div class="new"><button>新增标签</button></div>
-    </div>
-    <div class="revenueTags">
-      <ul class="current">
-        <li>工资</li>
-        <li>外快</li>
-        <li>股票</li>
-        <li>基金</li>
-        <li>其他</li>
-      </ul>
-      <div class="new"><button>新增标签</button></div>
-    </div>
+    <Expenditures></Expenditures>
+    <Revenue></Revenue>
     <label class="notes">
       <span class="name">备注</span>
       <input type="text" />
@@ -68,7 +38,12 @@
 </template>
 
 <script lang="ts">
-export default {};
+import Expenditures from "@/components/Expenditures.vue";
+import Revenue from "../components/Revenue.vue";
+export default {
+  // eslint-disable-next-line vue/no-unused-components
+  components: { Expenditures, Revenue },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -85,7 +60,7 @@ export default {};
 }
 nav {
   > .types {
-    background: rgb(254, 223, 228);
+    background: $color-background;
     display: flex;
     text-align: center;
     font-size: 24px;
@@ -107,31 +82,5 @@ nav {
       }
     }
   }
-}
-
-.expendituresTags {
-  > .current {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    > li {
-      display: flex;
-      align-items: center;
-      background: pink;
-      height: 30px;
-      border-radius: 12px;
-      padding: 0 20px;
-      margin: 10px 10px;
-      white-space: nowrap;
-    }
-  }
-  .new {
-    .button {
-    }
-  }
-}
-
-.revenueTags {
-  display: none;
 }
 </style>
