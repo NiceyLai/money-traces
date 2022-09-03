@@ -1,10 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="number">
-    <label class="notes">
-      <span class="name">备注</span>
-      <input type="text" placeholder="请在这里输入备注" />
-    </label>
+    <Notes></Notes>
     <div class="numberPad">
       <div class="output">100</div>
       <div class="buttons">
@@ -30,7 +27,11 @@
 </template>
 
 <script lang="ts">
-export default {};
+import Notes from "@/components/New/Notes.vue";
+
+export default {
+  components: { Notes },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -58,22 +59,6 @@ export default {};
         height: 56px;
         border: 4px solid $color-bg1;
       }
-    }
-  }
-  > .notes {
-    padding-left: 16px;
-    display: flex;
-    align-items: center;
-    .name {
-      font-size: 16px;
-      padding-right: 16px;
-    }
-    input {
-      height: 40px;
-      flex-grow: 1;
-      background: transparent;
-      border: none;
-      padding-right: 16px;
     }
   }
 }
