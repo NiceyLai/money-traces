@@ -36,7 +36,7 @@ export default {};
 <style lang="scss" scoped>
 @import "@/assets/style/helper.scss";
 .number {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 56px;
   width: 100%;

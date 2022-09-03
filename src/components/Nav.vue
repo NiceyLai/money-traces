@@ -20,7 +20,7 @@ export default {};
 @import "@/assets/style/helper.scss";
 @import "@/assets/style/reset.scss";
 nav {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   z-index: 101;

@@ -34,15 +34,15 @@ export default {};
   // display: none;
   font-size: 14px;
   width: 100%;
-  height: 36vh;
-  overflow: auto;
-  position: fixed;
+  height: 33vh;
   top: 64px;
-  left: 0;
+  overflow: auto;
+  position: absolute;
+
   > .current {
-    margin-left: 16px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 
     > li {
       display: flex;
