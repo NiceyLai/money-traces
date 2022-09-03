@@ -2,7 +2,7 @@
 <template>
   <div class="expendituresTags">
     <ul class="current">
-      <li><i class="iconfont icon-food1"></i>三餐</li>
+      <li class="selected"><i class="iconfont icon-food1"></i>三餐</li>
       <li><i class="iconfont icon-food"></i>零食</li>
       <li><i class="iconfont icon-jiaotong"></i>交通</li>
       <li><i class="iconfont icon-lvhang"></i>旅行</li>
@@ -45,11 +45,15 @@ export default {};
     justify-content: space-around;
 
     > li {
+      color: #555;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 0 20px;
       margin: 10px 5px;
+      &.selected {
+        color: $color-highlight;
+      }
     }
   }
 }

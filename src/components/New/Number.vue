@@ -42,7 +42,6 @@ export default {};
   width: 100%;
 
   > .numberPad {
-    background-color: $color-bodybackground;
     .output {
       @extend %clearFix;
       @extend %innerShadow;
@@ -54,11 +53,10 @@ export default {};
     > .buttons {
       @extend %clearFix;
       > button {
-        background-color: $color-bodybackground;
+        background-color: #fff;
         width: 25%;
         height: 56px;
-        border-radius: 10px;
-        border: 2px solid $color-background;
+        border: 4px solid $color-bg1;
       }
     }
   }

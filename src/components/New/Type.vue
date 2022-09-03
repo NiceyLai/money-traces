@@ -18,7 +18,7 @@ export default {};
 nav {
   position: relative;
   > .types {
-    background: $color-background;
+    background: $color-bg1;
     display: flex;
     position: fixed;
     top: 0;
@@ -33,6 +33,11 @@ nav {
       justify-content: center;
       align-items: center;
       position: relative;
+      color: #333;
+      &.selected {
+        color: $color-highlight;
+      }
+
       &.selected::after {
         content: "";
         position: absolute;
@@ -40,7 +45,7 @@ nav {
         left: 25%;
         width: 50%;
         height: 3px;
-        background: rgb(109, 107, 107);
+        background: $color-highlight;
       }
     }
   }

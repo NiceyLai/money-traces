@@ -14,6 +14,5 @@
 body {
   line-height: 1.5;
   height: 100%;
-  background-color: $color-bodybackground;
 }
 </style>

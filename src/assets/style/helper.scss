@@ -55,10 +55,8 @@ $font-song: Georgia,
     MingLiU,
     serif;
 
-$color-highlight: pink;
-
-$color-bodybackground: #f4f4f4;
-$color-background: rgb(254, 223, 228);
+$color-highlight: #409eff;
+$color-bg1: #d8e9fd;
 %clearFix {
     &::after {
         content: '';
