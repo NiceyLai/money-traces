@@ -4,19 +4,19 @@
     <Type></Type>
     <Expenditures></Expenditures>
     <Revenue></Revenue>
-    <Number></Number>
+    <NumberPad></NumberPad>
   </Layout>
 </template>
 
 <script lang="ts">
 import Expenditures from "@/components/New/Expenditures.vue";
 import Revenue from "../components/New/Revenue.vue";
-import Number from "../components/New/Number.vue";
+import NumberPad from "../components/New/NumberPad.vue";
 import Type from "../components/New/Type.vue";
 
 export default {
   // eslint-disable-next-line vue/no-unused-components
-  components: { Expenditures, Revenue, Number, Type },
+  components: { Expenditures, Revenue, NumberPad, Type },
 };
 </script>
 
@@ -28,4 +28,3 @@ export default {
 </style>
 
 <style lang="scss"></style>
-@/components/New/Expenditures.vue ../components/New/Revenue.vue
