@@ -10,28 +10,27 @@ Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
+    name: 'money',
     path: '/',
-    name: 'money',
     component: Money
   },
   {
+    name: 'money',
     path: '/money',
-    name: 'money',
     component: Money
   },
-  {
+  { name: 'new',
     path: '/new',
-    name: 'new',
     component: New
   },
   {
-    path: '/statistics',
     name: 'statistics',
+    path: '/statistics',
     component:Statistics
   },
   {
-    path: '/:pathMatch(.*)*',
     name: 'NotFound',
+    path: '/:pathMatch(.*)*',
     component: NotFound
   },
  

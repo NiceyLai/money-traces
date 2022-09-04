@@ -7,7 +7,10 @@
 </template>
 
 <script lang="ts">
-export default {};
+export default {
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Notes",
+};
 </script>
 
 <style lang="scss" scoped>

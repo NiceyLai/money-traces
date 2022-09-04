@@ -8,50 +8,94 @@
         <button @click="inputContent">1</button>
         <button @click="inputContent">2</button>
         <button @click="inputContent">3</button>
-        <button>+</button>
+        <button @click="remove">删除</button>
         <button @click="inputContent">4</button>
         <button @click="inputContent">5</button>
         <button @click="inputContent">6</button>
-        <button>-</button>
+        <button @click="add">+</button>
         <button @click="inputContent">7</button>
         <button @click="inputContent">8</button>
         <button @click="inputContent">9</button>
-        <button class="ok">保存</button>
-        <button>清空</button>
+        <button @click="divider">-</button>
+        <button @click="clear">清空</button>
         <button @click="inputContent">0</button>
         <button @click="inputContent">.</button>
+        <button @click="ok" class="ok">保存</button>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+<script>
 import Notes from "@/components/New/Notes.vue";
 
-@Component
-export default class NumberPad extends Vue {}
-// import Notes from "@/components/New/Notes.vue";
+export default {
+  data() {
+    return {
+      output: "0",
+      input: 0,
+      sum: 0,
+    };
+  },
+  methods: {
+    inputContent(event) {
+      const input = event.target.textContent;
+      // console.log(input);
+      if (this.output.indexOf("+") > 0) {
+        console.log(999999, this.sum, this.input);
+        this.sum = this.input + +input;
+        this.input = this.sum;
+        console.log(11111, this.input, this.sum);
+      }
+      if (this.output.length === 16) {
+        return;
+      }
+      if (this.output === "0") {
+        if ("0123456789".indexOf(input) >= 0) {
+          this.output = input;
+        } else {
+          this.output += input;
+        }
+        this.input = +input;
+        return;
+      }
+      if (this.output.indexOf(".") >= 0) {
+        //保证里面只有一个小数点
+        if (input === ".") return;
+        // 保证只输出小数点后两位
+        if (this.output.length === this.output.indexOf(".") + 3) return;
+      }
+      this.input = +input;
+      this.output += input;
+    },
 
-// export default {
-//   data() {
-//     return {
-//       output: "0",
-//     };
-//   },
-//   methods: {
-//     inputContent(event: MouseEvent) {
-//       const button = event.target as HTMLButtonElement;
-//       const input = button.textContent as string;
-//       console.log(button.textContent);
-//       if (this.output === "0") {
-//         return;
-//       }
-//     },
-//   },
-//   components: { Notes },
-// };
+    remove() {
+      if (this.output.length === 1) {
+        this.output = "0";
+      } else {
+        this.output = this.output.slice(0, -1);
+      }
+    },
+
+    clear() {
+      this.output = "0";
+    },
+
+    ok() {
+      console.log("提交账单");
+      this.clear();
+    },
+
+    add(event) {
+      const input = event.target.textContent;
+      this.output += input;
+    },
+
+    // divider() {},
+  },
+
+  components: { Notes },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -79,8 +123,7 @@ export default class NumberPad extends Vue {}
         height: 56px;
         border: 4px solid $color-bg1;
         &.ok {
-          height: 56 * 2px;
-          float: right;
+          color: rgb(252, 0, 0);
         }
       }
     }
