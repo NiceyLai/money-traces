@@ -34,19 +34,19 @@ export default {
     return {
       output: "0",
       input: 0,
-      sum: 0,
     };
   },
   methods: {
     inputContent(event) {
       const input = event.target.textContent;
+
       // console.log(input);
-      if (this.output.indexOf("+") > 0) {
-        console.log(999999, this.sum, this.input);
-        this.sum = this.input + +input;
-        this.input = this.sum;
-        console.log(11111, this.input, this.sum);
-      }
+      // if (this.output.indexOf("+") > 0) {
+      //   console.log("this.sum为" + this.sum, "this.input为" + this.input);
+      //   this.sum = this.input + +input;
+      //   this.input = this.sum;
+      //   console.log("this.input为" + this.input, "this.sum为" + this.sum);
+      // }
       if (this.output.length === 16) {
         return;
       }
@@ -87,11 +87,33 @@ export default {
     },
 
     add(event) {
+      if (this.output.charAt(this.output.length - 1) === "+") {
+        return;
+      }
       const input = event.target.textContent;
       this.output += input;
+      const number1 = this.output.split("+").map((nums) => +nums);
+      console.log(number1);
+      const sum = number1.reduce(
+        (previousValue, currentValue) => previousValue + currentValue
+      );
+      console.log(sum);
     },
 
-    // divider() {},
+    divider(event) {
+      if (this.output.charAt(this.output.length - 1) === "-") {
+        return;
+      }
+      const input = event.target.textContent;
+      this.output += input;
+
+      const number2 = this.output.split("-").map((nums) => +nums);
+      console.log(number2);
+      const divider = number2.reduce(
+        (previousValue, currentValue) => previousValue - currentValue
+      );
+      console.log(divider);
+    },
   },
 
   components: { Notes },
