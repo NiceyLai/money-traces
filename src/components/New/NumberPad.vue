@@ -114,16 +114,21 @@ export default {
       padding: 9px 16px;
       text-align: right;
       height: 62px;
+      color: #eb5860;
     }
     > .buttons {
+      background-color: $color-bg1;
       @extend %clearFix;
       > button {
         background-color: #fff;
         width: 25%;
         height: 56px;
+        border-radius: 15px;
         border: 4px solid $color-bg1;
+
         &.ok {
-          color: rgb(252, 0, 0);
+          color: #fff;
+          background-color: #eb5860;
         }
       }
     }
