@@ -3,24 +3,26 @@
   <div class="number">
     <Notes></Notes>
     <div class="numberPad">
-      <div class="output">{{ output }}</div>
+      <div class="output">
+        <i class="iconfont icon-qianqian-"></i> {{ currentNumber }}
+      </div>
       <div class="buttons">
-        <button @click="inputContent">1</button>
-        <button @click="inputContent">2</button>
-        <button @click="inputContent">3</button>
-        <button @click="remove">删除</button>
-        <button @click="inputContent">4</button>
-        <button @click="inputContent">5</button>
-        <button @click="inputContent">6</button>
-        <button @click="add">+</button>
-        <button @click="inputContent">7</button>
-        <button @click="inputContent">8</button>
-        <button @click="inputContent">9</button>
-        <button @click="divider">-</button>
-        <button @click="clear">清空</button>
-        <button @click="inputContent">0</button>
-        <button @click="inputContent">.</button>
-        <button @click="ok" class="ok">保存</button>
+        <button @click="run">1</button>
+        <button @click="run">2</button>
+        <button @click="run">3</button>
+        <button @click="remove" data-type="remove">删除</button>
+        <button @click="run">4</button>
+        <button @click="run">5</button>
+        <button @click="run">6</button>
+        <button @click="operate" data-type="operate">+</button>
+        <button @click="run">7</button>
+        <button @click="run">8</button>
+        <button @click="run">9</button>
+        <button @click="operate" data-type="operate">-</button>
+        <button @click="clear" data-type="clear">清空</button>
+        <button @click="run">0</button>
+        <button @click="run">.</button>
+        <button @click="ok" class="ok" data-type="ok">保存</button>
       </div>
     </div>
   </div>
@@ -32,87 +34,93 @@ import Notes from "@/components/New/Notes.vue";
 export default {
   data() {
     return {
-      output: "0",
-      input: 0,
+      currentNumber: "",
+      prevNumber: "",
+      sign: "",
     };
   },
   methods: {
-    inputContent(event) {
-      const input = event.target.textContent;
+    run(e) {
+      const type = e.target.dataset.type;
+      const text = e.target.textContent;
 
-      // console.log(input);
-      // if (this.output.indexOf("+") > 0) {
-      //   console.log("this.sum为" + this.sum, "this.input为" + this.input);
-      //   this.sum = this.input + +input;
-      //   this.input = this.sum;
-      //   console.log("this.input为" + this.input, "this.sum为" + this.sum);
-      // }
-      if (this.output.length === 16) {
+      if (type === "remove") {
+        this.remove();
+      } else if (type === "clear") {
+        this.clear();
+      } else if (type === "operate") {
+        this.operate(text);
+      } else if (type === "ok") {
+        this.ok();
+      } else {
+        this.pushNumber(text);
+      }
+    },
+
+    pushNumber(num) {
+      if (this.currentNumber.length === 16) {
         return;
       }
-      if (this.output === "0") {
-        if ("0123456789".indexOf(input) >= 0) {
-          this.output = input;
+      if (this.currentNumber === "0") {
+        if ("0123456789".indexOf(num) >= 0) {
+          this.currentNumber = num;
         } else {
-          this.output += input;
+          this.currentNumber += num;
         }
-        this.input = +input;
         return;
       }
-      if (this.output.indexOf(".") >= 0) {
+      if (this.currentNumber.indexOf(".") >= 0) {
         //保证里面只有一个小数点
-        if (input === ".") return;
+        if (num === ".") return;
         // 保证只输出小数点后两位
-        if (this.output.length === this.output.indexOf(".") + 3) return;
+        if (this.currentNumber.length === this.currentNumber.indexOf(".") + 3)
+          return;
       }
-      this.input = +input;
-      this.output += input;
+
+      this.currentNumber = this.currentNumber + num;
+      console.log(this.currentNumber);
     },
 
     remove() {
-      if (this.output.length === 1) {
-        this.output = "0";
-      } else {
-        this.output = this.output.slice(0, -1);
-      }
+      if (!this.currentNumber.toString().length) return;
+      this.currentNumber = this.currentNumber.toString().slice(0, -1);
+      console.log(this.currentNumber);
     },
 
     clear() {
-      this.output = "0";
+      this.currentNumber = "0";
+      this.sign = "";
+      this.prevNumber = "";
+    },
+
+    operate(text) {
+      if (!this.currentNumber.toString().length) return;
+      this.sign = text.target.innerHTML;
+      this.prevNumber = this.currentNumber;
+      this.currentNumber = "";
+
+      console.log(this.sign);
     },
 
     ok() {
-      console.log("提交账单");
-      this.clear();
-    },
-
-    add(event) {
-      if (this.output.charAt(this.output.length - 1) === "+") {
-        return;
+      let result = 0;
+      const prev = Number(this.prevNumber);
+      const current = Number(this.currentNumber);
+      switch (this.sign) {
+        case "+":
+          result = prev + current;
+          break;
+        case "-":
+          result = prev - current;
+          break;
+        default:
+          return;
       }
-      const input = event.target.textContent;
-      this.output += input;
-      const number1 = this.output.split("+").map((nums) => +nums);
-      console.log(number1);
-      const sum = number1.reduce(
-        (previousValue, currentValue) => previousValue + currentValue
-      );
-      console.log(sum);
-    },
+      this.currentNumber = result;
+      this.sign = "";
+      this.prevNumber = "";
 
-    divider(event) {
-      if (this.output.charAt(this.output.length - 1) === "-") {
-        return;
-      }
-      const input = event.target.textContent;
-      this.output += input;
-
-      const number2 = this.output.split("-").map((nums) => +nums);
-      console.log(number2);
-      const divider = number2.reduce(
-        (previousValue, currentValue) => previousValue - currentValue
-      );
-      console.log(divider);
+      console.log("提交账单", this.currentNumber);
     },
   },
 
@@ -134,7 +142,7 @@ export default {
       font-size: 30px;
       font-family: Consolas, monospace;
       padding: 9px 16px;
-      text-align: right;
+      text-align: left;
       height: 62px;
       color: #eb5860;
     }
@@ -147,6 +155,10 @@ export default {
         height: 56px;
         border-radius: 15px;
         border: 4px solid $color-bg1;
+
+        &:active {
+          filter: brightness(110%);
+        }
 
         &.ok {
           color: #fff;
