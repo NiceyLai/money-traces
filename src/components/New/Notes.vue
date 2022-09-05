@@ -2,7 +2,7 @@
 <template>
   <label class="notes">
     <span class="name">备注</span>
-    <input type="text" placeholder="请在这里输入备注" />
+    <input type="text" v-model="value" placeholder="请在这里输入备注" />
   </label>
 </template>
 
@@ -10,6 +10,12 @@
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Notes",
+  data() {
+    return {
+      value: "",
+    };
+  },
+  methods: {},
 };
 </script>
 
