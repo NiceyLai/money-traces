@@ -10,19 +10,19 @@
         <button @click="run">1</button>
         <button @click="run">2</button>
         <button @click="run">3</button>
-        <button @click="remove" data-type="remove">删除</button>
+        <button @click="remove">删除</button>
         <button @click="run">4</button>
         <button @click="run">5</button>
         <button @click="run">6</button>
-        <button @click="operate" data-type="operate">+</button>
+        <button @click="operate">+</button>
         <button @click="run">7</button>
         <button @click="run">8</button>
         <button @click="run">9</button>
-        <button @click="operate" data-type="operate">-</button>
-        <button @click="clear" data-type="clear">清空</button>
+        <button @click="operate">-</button>
+        <button @click="clear">清空</button>
         <button @click="run">0</button>
         <button @click="run">.</button>
-        <button @click="ok" class="ok" data-type="ok">保存</button>
+        <button @click="ok" class="ok">保存</button>
       </div>
     </div>
   </div>
@@ -34,27 +34,15 @@ import Notes from "@/components/New/Notes.vue";
 export default {
   data() {
     return {
-      currentNumber: "",
-      prevNumber: "",
+      currentNumber: "0",
+      prevNumber: "0",
       sign: "",
     };
   },
   methods: {
     run(e) {
-      const type = e.target.dataset.type;
       const text = e.target.textContent;
-
-      if (type === "remove") {
-        this.remove();
-      } else if (type === "clear") {
-        this.clear();
-      } else if (type === "operate") {
-        this.operate(text);
-      } else if (type === "ok") {
-        this.ok();
-      } else {
-        this.pushNumber(text);
-      }
+      this.pushNumber(text);
     },
 
     pushNumber(num) {
@@ -76,34 +64,34 @@ export default {
         if (this.currentNumber.length === this.currentNumber.indexOf(".") + 3)
           return;
       }
-
       this.currentNumber = this.currentNumber + num;
-      console.log(this.currentNumber);
     },
 
     remove() {
-      if (!this.currentNumber.toString().length) return;
+      if (this.currentNumber.toString().length === 1) {
+        this.currentNumber = "0";
+        return;
+      }
       this.currentNumber = this.currentNumber.toString().slice(0, -1);
-      console.log(this.currentNumber);
     },
 
     clear() {
       this.currentNumber = "0";
       this.sign = "";
-      this.prevNumber = "";
+      this.prevNumber = "0";
     },
 
     operate(text) {
       if (!this.currentNumber.toString().length) return;
       this.sign = text.target.innerHTML;
       this.prevNumber = this.currentNumber;
-      this.currentNumber = "";
-
+      this.currentNumber = "0";
       console.log(this.sign);
     },
 
     ok() {
       let result = 0;
+      console.log(3333333);
       const prev = Number(this.prevNumber);
       const current = Number(this.currentNumber);
       switch (this.sign) {
@@ -114,13 +102,13 @@ export default {
           result = prev - current;
           break;
         default:
-          return;
       }
-      this.currentNumber = result;
+      this.currentNumber = result ? result : this.currentNumber;
       this.sign = "";
-      this.prevNumber = "";
+      this.prevNumber = "0";
 
       console.log("提交账单", this.currentNumber);
+      this.currentNumber = "0";
     },
   },
 
