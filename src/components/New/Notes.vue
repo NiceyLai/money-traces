@@ -7,16 +7,13 @@
 </template>
 
 <script lang="ts">
-export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: "Notes",
-  data() {
-    return {
-      value: "",
-    };
-  },
-  methods: {},
-};
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component
+export default class Notes extends Vue {
+  value = "";
+}
 </script>
 
 <style lang="scss" scoped>
