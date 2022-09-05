@@ -37,14 +37,27 @@ export default {
       currentNumber: "0",
       prevNumber: "0",
       sign: "",
+      result: 0,
+      input: "",
     };
   },
   methods: {
     run(e) {
       const text = e.target.textContent;
+
       this.pushNumber(text);
     },
-
+    caculate() {
+      console.log(this.input);
+      const arr = this.input.split("");
+      console.log(55555, arr);
+      arr.forEach((item, index) => {
+        console.log(33333, item, index);
+        if (item === "+" && index !== 0) {
+          arr[index - 1] + arr[index + 1];
+        }
+      });
+    },
     pushNumber(num) {
       if (this.currentNumber.length === 16) {
         return;
@@ -55,6 +68,8 @@ export default {
         } else {
           this.currentNumber += num;
         }
+        this.input += num;
+
         return;
       }
       if (this.currentNumber.indexOf(".") >= 0) {
@@ -64,51 +79,61 @@ export default {
         if (this.currentNumber.length === this.currentNumber.indexOf(".") + 3)
           return;
       }
+      this.input += num;
+      console.log(99999, "this.input：" + this.input);
       this.currentNumber = this.currentNumber + num;
     },
 
     remove() {
       if (this.currentNumber.toString().length === 1) {
         this.currentNumber = "0";
+        this.input = "";
         return;
       }
       this.currentNumber = this.currentNumber.toString().slice(0, -1);
+      this.input = this.currentNumber;
     },
 
     clear() {
       this.currentNumber = "0";
       this.sign = "";
       this.prevNumber = "0";
+      this.input = "";
     },
 
     operate(text) {
       if (!this.currentNumber.toString().length) return;
       this.sign = text.target.innerHTML;
-      this.prevNumber = this.currentNumber;
-      this.currentNumber = "0";
       console.log(this.sign);
+      this.prevNumber = this.currentNumber;
+      this.currentNumber = "";
+
+      this.input = this.input + this.sign;
+      console.log(1111111, this.input);
+      this.caculate();
     },
 
     ok() {
-      let result = 0;
+      this.result = 0;
       console.log(3333333);
       const prev = Number(this.prevNumber);
       const current = Number(this.currentNumber);
       switch (this.sign) {
         case "+":
-          result = prev + current;
+          this.result = prev + current;
           break;
         case "-":
-          result = prev - current;
+          this.result = prev - current;
           break;
         default:
       }
-      this.currentNumber = result ? result : this.currentNumber;
+      this.currentNumber = this.result ? this.result : this.currentNumber;
       this.sign = "";
       this.prevNumber = "0";
 
       console.log("提交账单", this.currentNumber);
       this.currentNumber = "0";
+      this.input = "";
     },
   },
 
