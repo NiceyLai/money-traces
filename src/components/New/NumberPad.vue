@@ -44,7 +44,6 @@ export default {
   methods: {
     run(e) {
       const text = e.target.textContent;
-
       this.pushNumber(text);
     },
     caculate() {
@@ -52,9 +51,9 @@ export default {
       const arr = this.input.split("");
       console.log(55555, arr);
       arr.forEach((item, index) => {
-        console.log(33333, item, index);
         if (item === "+" && index !== 0) {
-          arr[index - 1] + arr[index + 1];
+          arr[index - 1] = Number(arr[index - 1]) + Number(arr[index + 1]);
+          console.log(222222, arr[index - 1]);
         }
       });
     },
@@ -80,7 +79,8 @@ export default {
           return;
       }
       this.input += num;
-      console.log(99999, "this.input：" + this.input);
+      this.caculate();
+
       this.currentNumber = this.currentNumber + num;
     },
 
@@ -104,18 +104,15 @@ export default {
     operate(text) {
       if (!this.currentNumber.toString().length) return;
       this.sign = text.target.innerHTML;
-      console.log(this.sign);
       this.prevNumber = this.currentNumber;
       this.currentNumber = "";
 
       this.input = this.input + this.sign;
-      console.log(1111111, this.input);
       this.caculate();
     },
 
     ok() {
       this.result = 0;
-      console.log(3333333);
       const prev = Number(this.prevNumber);
       const current = Number(this.currentNumber);
       switch (this.sign) {
@@ -146,7 +143,7 @@ export default {
 .number {
   position: absolute;
   left: 0;
-  bottom: 56px;
+  bottom: 54px;
   width: 100%;
   > .numberPad {
     .output {
