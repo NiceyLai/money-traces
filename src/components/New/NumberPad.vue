@@ -46,17 +46,22 @@ export default {
       const text = e.target.textContent;
       this.pushNumber(text);
     },
+
     caculate() {
-      console.log(this.input);
-      const arr = this.input.split("");
-      console.log(55555, arr);
+      //  str.split(/([+-])/g) 将字符串'11.9+6-0.9'变成['11.9','+','6','-','0.9']
+      const arr = this.input.split(/([+-])/g);
       arr.forEach((item, index) => {
         if (item === "+" && index !== 0) {
-          arr[index - 1] = Number(arr[index - 1]) + Number(arr[index + 1]);
-          console.log(222222, arr[index - 1]);
+          arr[index + 1] = Number(arr[index - 1]) + Number(arr[index + 1]);
+          this.result = arr[index + 1].toFixed(2);
+        }
+        if (item === "-" && index !== 0) {
+          arr[index + 1] = Number(arr[index - 1]) - Number(arr[index + 1]);
+          this.result = arr[index + 1].toFixed(2);
         }
       });
     },
+
     pushNumber(num) {
       if (this.currentNumber.length === 16) {
         return;
@@ -112,18 +117,6 @@ export default {
     },
 
     ok() {
-      this.result = 0;
-      const prev = Number(this.prevNumber);
-      const current = Number(this.currentNumber);
-      switch (this.sign) {
-        case "+":
-          this.result = prev + current;
-          break;
-        case "-":
-          this.result = prev - current;
-          break;
-        default:
-      }
       this.currentNumber = this.result ? this.result : this.currentNumber;
       this.sign = "";
       this.prevNumber = "0";
@@ -131,6 +124,7 @@ export default {
       console.log("提交账单", this.currentNumber);
       this.currentNumber = "0";
       this.input = "";
+      this.result = 0;
     },
   },
 
